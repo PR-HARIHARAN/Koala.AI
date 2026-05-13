@@ -71,7 +71,6 @@ Koala is a **Python framework** for building and orchestrating AI agent workflow
 
 ### 📈 Observability
 - **Structured Logging**: JSON-formatted logs with context
-- **Metrics**: Prometheus-compatible metrics collection
 - **Distributed Tracing**: Track execution across services
 
 ### ⚡ Multiple Executors
@@ -81,7 +80,6 @@ Koala is a **Python framework** for building and orchestrating AI agent workflow
 
 ### 🔌 Integrations
 - **Apache Airflow**: Auto-generate DAGs from flows
-- **Kafka**: Event-driven ingress/egress
 - **FastAPI**: REST API for flow submission
 - **LLMs**: OpenAI-compatible client (OpenAI, Groq, Azure, local models)
 
@@ -254,7 +252,6 @@ _AIRFLOW_WWW_USER_PASSWORD=airflow
 
 See `.env.example` for complete list of optional configurations:
 - Database connections
-- Kafka integration
 - API authentication
 - Observability settings
 - State management
@@ -289,7 +286,6 @@ docker-compose up -d
 - `airflow-apiserver` - Execution API
 - `airflow-triggerer` - Async triggers
 - `postgres` - Database
-- `redis` - Message broker
 
 ### Step 3: Access Airflow UI
 
@@ -557,14 +553,14 @@ More examples in [`examples/`](examples/) and [`cookbook/`](cookbook/) directori
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                   Koala Framework                        │
+│                   Koala Framework                       │
 ├─────────────────────────────────────────────────────────┤
-│                                                          │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
-│  │ Flow Builder │  │Tool Registry │  │  Guardrails  │  │
-│  │  (DAG/SM)    │  │   (@tool)    │  │   (Guards)   │  │
-│  └──────────────┘  └──────────────┘  └──────────────┘  │
-│                                                          │
+│                                                         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐   │
+│  │ Flow Builder │  │Tool Registry │  │  Guardrails  │   │
+│  │  (DAG/SM)    │  │   (@tool)    │  │   (Guards)   │   │
+│  └──────────────┘  └──────────────┘  └──────────────┘   │
+│                                                         │
 │  ┌────────────────────────────────────────────────────┐ │
 │  │         Executors (Pluggable Backends)             │ │
 │  ├────────────────────────────────────────────────────┤ │
@@ -572,19 +568,19 @@ More examples in [`examples/`](examples/) and [`cookbook/`](cookbook/) directori
 │  │  • ProcessExecutor  (Multi-process)                │ │
 │  │  • AirflowExecutor  (Distributed)                  │ │
 │  └────────────────────────────────────────────────────┘ │
-│                                                          │
+│                                                         │
 │  ┌────────────────────────────────────────────────────┐ │
 │  │            Observability Layer                     │ │
 │  ├────────────────────────────────────────────────────┤ │
 │  │  • Structured Logging  • Metrics  • Tracing        │ │
 │  └────────────────────────────────────────────────────┘ │
-│                                                          │
+│                                                         │
 │  ┌────────────────────────────────────────────────────┐ │
 │  │              Ingress/API Layer                     │ │
 │  ├────────────────────────────────────────────────────┤ │
-│  │  • REST API (FastAPI)  • Kafka  • Auth            │ │
+│  │  • REST API (FastAPI)  • Kafka  • Auth             │ │
 │  └────────────────────────────────────────────────────┘ │
-│                                                          │
+│                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
 
